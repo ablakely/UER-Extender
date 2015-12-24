@@ -1,0 +1,17 @@
+{
+	"manifest_version": 2,
+	"name": "UER Extender",
+	"version": "0.0.1",
+	"description": "UER.ca with more features",
+	"background": {
+		"scripts": ["background.js"]
+	},
+	"page_action": {
+		"default_icon": "lib/1.png",
+		"default_title": "UER Extender",
+		"default_popup": "popup.html"
+	},
+	"permissions": [
+		"tabs", "http://www.uer.ca/*", "http://uer.ca/*", "storage"
+	]
+}
