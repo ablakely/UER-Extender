@@ -11,7 +11,14 @@ function showIntercomAction(tabId, changeInfo, tab) {
 			if (key.uer_dm == true) {
 				chrome.tabs.executeScript(tabId, {file:"./disablemusic.js"});
 			}
-		})
+		});
+
+		chrome.storage.sync.get('uer_ac', function(key) {
+			if (key.uer_ac == true) {
+				chrome.tabs.executeScript(tabId, {file:"./converter.js"});
+			}
+		});
+		
 	}
 }
 

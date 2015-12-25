@@ -10,11 +10,18 @@ $(document).ready(function() {
     if (key.uer_dm != undefined) {
       $("#disableMusic").prop('checked', key.uer_dm);
     }
-  })
+  });
+
+  chrome.storage.sync.get("uer_ac", function(key) {
+    if (key.uer_ac != undefined) {
+      $("#autoconvert").prop('checked', key.uer_ac);
+    }
+  });
 
   $("#updatesettings").click(function() {
     var ds = document.getElementById("disableSanta").checked;
     var dm = document.getElementById("disableMusic").checked;
+    var ac = document.getElementById("autoconvert").checked;
 
     chrome.storage.sync.set({"uer_ds": ds}, function() {
       if (ds == true) {
@@ -26,6 +33,13 @@ $(document).ready(function() {
       if (dm == true) {
         chrome.tabs.executeScript(null, {file: "disablemusic.js"});
       }
+    });
+
+    chrome.storage.sync.set({"uer_ac": ac}, function() {
+      if (ac == true) {
+        chrome.tabs.executeScript(null, {file: 'converter.js'});
+      }
     })
+
   });
 });
