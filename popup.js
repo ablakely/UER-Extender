@@ -18,10 +18,17 @@ $(document).ready(function() {
     }
   });
 
+  chrome.storage.sync.get("uer_an", function(key) {
+    if (key.uer_an != undefined) {
+      $("#dbarrownav").prop('checked', key.uer_an);
+    }
+  });
+
   $("#updatesettings").click(function() {
     var ds = document.getElementById("disableSanta").checked;
     var dm = document.getElementById("disableMusic").checked;
     var ac = document.getElementById("autoconvert").checked;
+    var an = document.getElementById("dbarrownav").checked;
 
     chrome.storage.sync.set({"uer_ds": ds}, function() {
       if (ds == true) {
@@ -39,7 +46,9 @@ $(document).ready(function() {
       if (ac == true) {
         chrome.tabs.executeScript(null, {file: 'converter.js'});
       }
-    })
+    });
+
+    chrome.storage.sync.set({"uer_an": an});
 
   });
 });

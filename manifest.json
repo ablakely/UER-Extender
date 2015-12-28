@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "UER Extender",
-	"version": "0.0.1",
+	"version": "0.0.5",
 	"description": "UER.ca with more features",
 	"background": {
 		"scripts": ["background.js"]
@@ -12,6 +12,17 @@
 		"default_popup": "popup.html"
 	},
 	"permissions": [
-		"tabs", "http://www.uer.ca/*", "http://uer.ca/*", "storage"
-	]
+		"tabs", "http://www.uer.ca/*", "http://uer.ca/*", "storage",
+		"commands"
+	],
+	"commands": {
+		"nextPhoto": {
+			"suggested_key": { "default": "Ctrl+Right" },
+			"description": "View the next photo"
+		},
+		"prevPhoto": {
+			"suggested_key": { "default": "Ctrl+Left" },
+			"description": "View the previous photo"
+		}
+	}
 }
