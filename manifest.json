@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "UER Extender",
-	"version": "0.0.5",
+	"version": "0.5",
 	"description": "UER.ca with more features",
 	"background": {
 		"scripts": ["background.js"]

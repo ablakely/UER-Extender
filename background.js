@@ -22,6 +22,12 @@ function showIntercomAction(tabId, changeInfo, tab) {
 			}
 		});
 
+		chrome.storage.sync.get('uer_dsnow', function(key) {
+			if (key.uer_dsnow == true) {
+				chrome.tabs.executeScript(tabId, {file:"./disablesnow.js"});
+			}
+		});
+
 	}
 }
 

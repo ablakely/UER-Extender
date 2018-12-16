@@ -12,6 +12,12 @@ $(document).ready(function() {
     }
   });
 
+  chrome.storage.sync.get("uer_dsnow", function(key) {
+    if (key.uer_dsnow != undefined) {
+      $("#disableSnow").prop('checked', key.uer_dsnow);
+    }
+  });
+
   chrome.storage.sync.get("uer_ac", function(key) {
     if (key.uer_ac != undefined) {
       $("#autoconvert").prop('checked', key.uer_ac);
@@ -26,6 +32,7 @@ $(document).ready(function() {
 
   $("#updatesettings").click(function() {
     var ds = document.getElementById("disableSanta").checked;
+    var dsnow = document.getElementById("disableSnow").checked;
     var dm = document.getElementById("disableMusic").checked;
     var ac = document.getElementById("autoconvert").checked;
     var an = document.getElementById("dbarrownav").checked;
@@ -35,6 +42,12 @@ $(document).ready(function() {
         chrome.tabs.executeScript(null, {file: "disablesanta.js"});
       }
     });
+
+    chrome.storage.sync.set({"uer_dsnow": dsnow}, function() {
+      if (dsnow == true) {
+        chrome.tabs.executeScript(null, {file: "disablesnow.js"});
+      }
+    })
 
     chrome.storage.sync.set({"uer_dm": dm}, function() {
       if (dm == true) {
